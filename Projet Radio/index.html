@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Radio Player</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For icons -->
+</head>
+<body>
+
+    <div class="container">
+        <div class="music-player">
+            <div class="cover">
+                <div class="gradient"></div>
+                <div class="tree"></div>
+                <div class="lines"></div>
+            </div>
+            
+            <div id="stationSelectForm" class="station-form">
+                <h3>Sélectionner une station à jouer</h3>
+                <select id="stationSelect" class="form-control dropdown" onchange="playRadio(this.value)">
+                    <option value="">Choisir une station</option>
+                </select>
+            </div>
+
+            <h2 id="currentStation">Aucune station sélectionnée</h2>
+            <div id="liveIndicator" class="hidden">
+                <span class="live-text">LIVE</span>
+                <span class="live-dot"></span>
+            </div>
+
+            <div id="statusMessage">Sélectionnez une station pour afficher son statut</div>
+            <audio id="radioPlayer" controls>
+                Your browser does not support the audio element.
+            </audio>
+
+            <div class="station-form">
+                <input type="text" id="stationName" placeholder="Nom de la station" class="form-control" />
+                <input type="text" id="stationUrl" placeholder="URL de la station" class="form-control" />
+                <button onclick="addOrUpdateStation()" class="add-button btn btn-success">
+                    <i class="fas fa-plus"></i> Ajouter une station
+                </button>
+            </div>
+
+            <div class="station-list">
+                <h3>Liste des stations</h3>
+                <div class="list-group" id="stationList">
+                    <!-- Les stations seront ajoutées ici dynamiquement -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

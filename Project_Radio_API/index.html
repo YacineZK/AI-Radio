@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecteur de Radio - Rouge FM Saguenay-Lac-St-Jean</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css">
+  <style>
+    /* Styling inspired by provided model */
+    body {
+      font-family: "Raleway", sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      max-width: 500px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+    .music-player {
+      text-align: center;
+      padding: 20px;
+    }
+    .cover img {
+      width: 80%;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+    .titre h1 {
+      font-size: 24px;
+      color: #cc6223;
+      margin: 10px 0;
+    }
+    .titre h3 {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .station-selection button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #ffffff;
+      background-color: #cc6223;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .lecteur audio {
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="music-player">
+    <div class="cover">
+      <img src="https://example.com/radio_cover.jpg" alt="Rouge FM Cover Image">
+    </div>
+    <div class="titre">
+      <h3>Rouge FM</h3>
+      <h1>Saguenay-Lac-St-Jean</h1>
+    </div>
+
+    <!-- Station Selection -->
+    <div class="station-selection">
+      <button onclick="changeStream('https://playerservices.streamtheworld.com/api/livestream-redirect/CFIXFM_ADP.aac')">128kbps AAC</button>
+      <button onclick="changeStream('https://playerservices.streamtheworld.com/api/livestream-redirect/CFIXFMAAC_SC.aac')">48kbps AAC</button>
+      <button onclick="changeStream('https://playerservices.streamtheworld.com/api/livestream-redirect/CFIXFMAAC.aac')">48kbps AAC</button>
+      <button onclick="changeStream('https://playerservices.streamtheworld.com/api/livestream-redirect/CFIXFM_SC.aac')">48kbps MP3</button>
+      <button onclick="changeStream('https://playerservices.streamtheworld.com/api/livestream-redirect/CFIXFM.mp3')">48kbps MP3</button>
+    </div>
+
+    <!-- Audio Player -->
+    <div class="lecteur">
+      <audio id="radioPlayer" class="fc-media" controls autoplay>
+        <source src="https://playerservices.streamtheworld.com/api/livestream-redirect/CFIXFM_ADP.aac" type="audio/aac">
+        Votre navigateur ne supporte pas la lecture audio.
+      </audio>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js"></script>
+<script>
+  // Change stream function
+  function changeStream(url) {
+    const player = document.getElementById('radioPlayer');
+    player.src = url;
+    player.play();
+  }
+
+  // Initialize custom media player controls
+  $(document).ready(function () {
+    $('audio.fc-media').mediaelementplayer({
+      features: ['playpause', 'current', 'duration', 'progress', 'volume'],
+      alwaysShowControls: true
+    });
+  });
+</script>
+
+</body>
+</html>

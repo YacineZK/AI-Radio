@@ -1,0 +1,13 @@
+[Unit]
+Description=Service de streaming radio continu
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+
+ExecStart=/bin/bash /home/yacinezk/radio.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
